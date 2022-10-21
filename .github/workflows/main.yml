@@ -16,5 +16,10 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          EAI_USERNAME: ${{ secrets.EAI_USERNAME }}
+          EAI_PASSWORD: ${{ secrets.EAI_PASSWORD }}
       - name: Run main.py
         run: python main.py --latest

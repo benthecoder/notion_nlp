@@ -1,3 +1,4 @@
+import logging
 import os
 import sys
 from datetime import datetime, timedelta
@@ -51,7 +52,7 @@ def get_latest_entry() -> Dict:
     try:
         results = notion.databases.query(
             **{
-                "database_id": NOTION_DATABASE_ID,
+                "database_id": "NOTION_DATABASE_ID",
                 "filter": {
                     "property": "date",
                     "date": {"on_or_after": ydt},
@@ -59,15 +60,13 @@ def get_latest_entry() -> Dict:
             }
         ).get("results")
 
-        pprint(results)
-
         return results[0]
 
     except APIResponseError as error:
         if error.code == APIErrorCode.ObjectNotFound:
             raise ValueError("Database not found.")
         else:
-            print(error)
+            logging.error(error)
 
 
 def update_text(result, tag_list, property_name):
@@ -138,8 +137,3 @@ def get_property(page_id) -> Dict:
     props = page.get("properties")
 
     return props
-
-
-if __name__ == "__main__":
-    res = get_latest_entry()
-    pprint(res)

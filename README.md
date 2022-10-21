@@ -83,6 +83,12 @@ Tip: you can turn those topics and emotions into tags by switching it's property
 
 However, note that to use the github workflows feature, where nlp sentiments are added to your notion page automatically, you need to keep it as a text property.
 
+## Github Workflows
+
+add the secrets to your repo by going to Settings > Secrets > Actions > New repository secret
+
+![secrets](assets/secret.png)
+
 ## setup dev environment
 
 ```shell

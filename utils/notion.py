@@ -2,7 +2,6 @@ import logging
 import os
 import sys
 from datetime import datetime, timedelta
-from pprint import pprint
 from typing import Dict, List
 
 from dotenv import load_dotenv
@@ -13,7 +12,12 @@ load_dotenv()
 NOTION_TOKEN = os.getenv("NOTION_TOKEN", "")
 NOTION_DATABASE_ID = os.getenv("NOTION_DATABASE_ID", "")
 
-print(NOTION_TOKEN)
+if NOTION_TOKEN == "":
+    raise ValueError("NOTION_TOKEN is not set")
+
+if NOTION_DATABASE_ID == "":
+    raise ValueError("NOTION_DATABASE_ID is not set")
+
 
 notion = Client(auth=NOTION_TOKEN)
 
@@ -53,7 +57,7 @@ def get_latest_entry() -> Dict:
     try:
         results = notion.databases.query(
             **{
-                "database_id": "NOTION_DATABASE_ID",
+                "database_id": NOTION_DATABASE_ID,
                 "filter": {
                     "property": "date",
                     "date": {"on_or_after": ydt},

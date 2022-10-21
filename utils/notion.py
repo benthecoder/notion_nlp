@@ -60,13 +60,13 @@ def get_latest_entry() -> Dict:
             }
         ).get("results")
 
+        return results[0]
+
     except APIResponseError as error:
         if error.code == APIErrorCode.ObjectNotFound:
             raise ValueError("Database not found.")
         else:
             logging.error(error)
-
-    return results[0]
 
 
 def update_text(result, tag_list, property_name):

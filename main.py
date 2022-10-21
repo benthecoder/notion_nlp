@@ -14,6 +14,9 @@ from utils.notion import (
 
 def add_nlp(entry, verbose=True):
     """add nlp information to a single page"""
+    if entry is None:
+        raise ValueError("entry is None")
+
     title = get_entry_title(entry)
     sentiment = get_sentiment(title)
     topics = get_topics(title)
@@ -41,6 +44,7 @@ def run_all():
 def run_latest():
     """run add_nlp on the latest entry"""
     entry = get_latest_entry()
+
     add_nlp(entry)
 
 

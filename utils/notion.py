@@ -9,8 +9,8 @@ from notion_client import APIErrorCode, APIResponseError, Client
 
 load_dotenv()
 
-NOTION_TOKEN = os.getenv("NOTION_TOKEN", "")
-NOTION_DATABASE_ID = os.getenv("NOTION_DATABASE_ID", "")
+NOTION_TOKEN = os.environ.get("NOTION_TOKEN", "")
+NOTION_DATABASE_ID = os.environ.get("NOTION_DATABASE_ID", "")
 
 if NOTION_TOKEN == "":
     raise ValueError("NOTION_TOKEN is not set")

@@ -33,6 +33,7 @@ Rename `.env.example` to `.env`
 
 First, the page must have the following properties, note the spelling and capitalization must be exact.
 
+- `date` - Date
 - `sentiment_score` - # number
 - `topics` - text
 - `emotions` - text

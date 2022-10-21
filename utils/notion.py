@@ -118,7 +118,9 @@ def get_entry_title(result) -> str:
     """Get the title of the entry."""
 
     try:
-        title = result["properties"]["text"]["title"][0]["plain_text"]
+        title = result["properties"]["Name"]["title"][0]["plain_text"]
+        # uncomment below if you get an error
+        # title = result["properties"]["text"]["title"][0]["plain_text"]
     except KeyError:
         raise KeyError("error in getting entry title.")
 
@@ -135,3 +137,8 @@ def get_property(page_id) -> Dict:
     props = page.get("properties")
 
     return props
+
+
+if __name__ == "__main__":
+    res = get_latest_entry()
+    pprint(res)

@@ -48,10 +48,6 @@ def run_latest():
     add_nlp(entry)
 
 
-def test():
-    print("test")
-
-
 def main():
 
     parser = argparse.ArgumentParser("Notion NLP")

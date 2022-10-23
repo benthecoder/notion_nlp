@@ -2,6 +2,7 @@ import logging
 import os
 import sys
 from datetime import datetime, timedelta
+from pprint import pprint
 from typing import Dict, List
 
 from dotenv import load_dotenv
@@ -49,10 +50,10 @@ def get_all_entries() -> List[Dict]:
 def get_latest_entry() -> Dict:
     """get the latest entry by filtering on or after yesterday and return the first result."""
 
-    # get the the day before today
-    ydt = datetime.today() - timedelta(days=1)
+    # get the past week
+    after_d = datetime.today() - timedelta(days=7)
     # format the date
-    ydt = ydt.strftime("%Y-%m-%d")
+    after_d = after_d.strftime("%Y-%m-%d")
 
     try:
         results = notion.databases.query(
@@ -60,10 +61,13 @@ def get_latest_entry() -> Dict:
                 "database_id": NOTION_DATABASE_ID,
                 "filter": {
                     "property": "date",
-                    "date": {"on_or_after": ydt},
+                    "date": {"on_or_after": after_d},
                 },
             }
         ).get("results")
+
+        if results[0] is None:
+            raise ValueError("No entries past in the 7 days.")
 
         return results[0]
 
@@ -142,3 +146,9 @@ def get_property(page_id) -> Dict:
     props = page.get("properties")
 
     return props
+
+
+if __name__ == "__main__":
+
+    # get the latest entry
+    latest_entry = get_latest_entry()

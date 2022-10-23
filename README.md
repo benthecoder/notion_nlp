@@ -1,6 +1,6 @@
 # Notion NLP Journal
 
-Brining NLP to [notion.so](https://www.notion.so/)
+Bringing NLP to [notion.so](https://www.notion.so/)
 
 Do you write your daily journal on Notion? This app automatically add sentiment analysis, keyword extraction, and emotional traits to your journal entries.
 
@@ -82,11 +82,11 @@ Tip: you can turn those topics and emotions into tags by switching it's property
 
 ![tags](assets/tags.png)
 
-However, note that to use the github workflows feature, where nlp sentiments are added to your notion page automatically, you need to keep it as a text property.
+However, note that to add NLP info to future journal entries, you need to keep it as a text property.
 
-## Github Workflows
+### step 4: setup Github Workflows (optional)
 
-add the secrets to your repo by going to Settings > Secrets > Actions > New repository secret
+add the secrets from `.env` to your repo by going to Settings > Secrets > Actions > New repository secret
 
 ![secrets](assets/secret.png)
 

@@ -56,13 +56,11 @@ def main():
         "--all",
         action="store_true",
         help="Run NLP on all entries",
-        required=True,
     )
     parser.add_argument(
         "--latest",
         action="store_true",
         help="Run NLP on the latest entry",
-        required=True,
     )
 
     args = parser.parse_args()

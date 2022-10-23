@@ -115,7 +115,7 @@ def update_sentiment(result, sentiment):
     properties = get_property(page_id)
 
     # if property is not number
-    if properties["sentiment"]["type"] != "number":
+    if properties["sentiment_score"]["type"] != "number":
         raise ValueError("not a number property")
 
     sentiment_score = properties.get("sentiment_score")

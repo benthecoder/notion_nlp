@@ -87,6 +87,10 @@ def update_text(result, tag_list, property_name):
     # get properties
     properties = get_property(page_id)
 
+    # if property is not text
+    if properties[property_name]["type"] != "rich_text":
+        raise ValueError("not a text property")
+
     # get topic property
     text_prop = properties.get(property_name)
 
@@ -110,6 +114,10 @@ def update_sentiment(result, sentiment):
     page_id = result["id"]
     properties = get_property(page_id)
 
+    # if property is not number
+    if properties["sentiment"]["type"] != "number":
+        raise ValueError("not a number property")
+
     sentiment_score = properties.get("sentiment_score")
 
     if sentiment_score is None:
@@ -131,7 +139,7 @@ def get_entry_title(result) -> str:
         # uncomment below if you get an error
         # title = result["properties"]["text"]["title"][0]["plain_text"]
     except KeyError:
-        raise KeyError("error in getting entry title.")
+        raise KeyError("Title not found.")
 
     return title
 

@@ -12,7 +12,7 @@ from utils.notion import (
 )
 
 
-def add_nlp(entry, verbose=True):
+def add_nlp(entry, verbose=False):
     """add nlp information to a single page"""
     if entry is None:
         raise ValueError("entry is None")
@@ -56,11 +56,13 @@ def main():
         "--all",
         action="store_true",
         help="Run NLP on all entries",
+        required=True,
     )
     parser.add_argument(
         "--latest",
         action="store_true",
         help="Run NLP on the latest entry",
+        required=True,
     )
 
     args = parser.parse_args()
@@ -69,8 +71,6 @@ def main():
         run_all()
     elif args.latest:
         run_latest()
-    else:
-        parser.print_help()
 
 
 if __name__ == "__main__":
